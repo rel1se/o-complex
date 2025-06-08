@@ -1,0 +1,140 @@
+@use '../../styles/variables.scss' as *;
+
+.cart {
+  background: $light-gray;
+  border-radius: $border-radius-size;
+  padding: 10px 13px;
+  width: 710px;
+  margin: 240px auto 0;
+
+  &__title {
+    font-size: 36px;
+    font-weight: 400;
+    color: $font-black;
+    margin: 1rem 0;
+    text-align: left;
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    row-gap: 0.75rem;
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+    align-items: center;
+    column-gap: 0.5rem;
+    font-size: 24px;
+
+    .item__title {
+      color: $font-black;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .item__qty,
+    .item__sum {
+      color: $font-black;
+      text-align: center;
+    }
+
+    .item__remove {
+      grid-column: 4;
+      justify-self: end;
+      background: transparent;
+      border: none;
+      font-size: 1.25rem;
+      line-height: 1;
+      cursor: pointer;
+      color: $dark-gray;
+      padding: 0;
+      &:hover {
+        color: $font-black;
+      }
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .cart__phone {
+    text-align: center;
+    flex: 1;
+    padding: 0.75rem 1rem;
+    font-size: 36px;
+    border: none;
+    border-radius: $border-radius-size;
+    background: $main-black;
+    color: $font-white;
+    &--error {
+      box-shadow: 0 0 0 3px rgba(229, 62, 62, 0.6);
+    }
+  }
+
+  &__error {
+    color: #e53e3e;
+    font-size: 0.9rem;
+    margin-top: 0.5rem;
+    text-align: left;
+  }
+
+  &__popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &-content {
+      background: $light-gray;
+      padding: 1.5rem 2rem;
+      border-radius: $border-radius-size;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      p {
+        color: $font-black;
+        font-size: 1.25rem;
+        margin: 0;
+      }
+    }
+  }
+
+  @media (max-width: 1024px) {
+    width: 90%;
+  }
+
+  @media (max-width: 768px) {
+    width: 90%;
+    margin: 100px auto 0;
+    &__title {
+      font-size: 36px;
+      text-align: center;
+    }
+    &__actions {
+      flex-direction: column;
+      .cart__phone {
+        width: 70%;
+      }
+    }
+
+  }
+
+  @media (max-width: 512px) {
+    &__actions {
+      flex-direction: column;
+
+      .cart__phone {
+        width: 90%;
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+@use '../../styles/variables.scss' as *;
+
+header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1442px;
+  height: 132px;
+  margin-top: 55px;
+  border-radius: $border-radius-size;
+  background: $dark-gray;
+  color: $font-white;
+
+  @media (max-width: 1024px) {
+    margin: 0;
+    padding: 0 74px;
+    text-align: center;
+  }
+}
+
+
+h1 {
+  font-size: 96px;
+  font-weight: 400;
+
+  @media (max-width: 1024px) {
+    font-size: 40px;
+  }
+}

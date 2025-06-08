@@ -1,0 +1,64 @@
+@use '../../styles/variables.scss' as *;
+
+.product-card {
+  width: 301px;
+  height: 812px;
+  background: $light-gray;
+  color: $font-black;
+  padding: 8px 10px;
+  border-radius: $border-radius-size;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  img {
+    border-radius: $border-radius-size;
+    width: 281px;
+    height: 361px;
+  }
+
+  h3 {
+    font-size: 32px;
+    height: 64px;
+    text-align: center;
+    font-weight: 400;
+    margin: 5px 0;
+  }
+
+  p {
+    font-size: 24px;
+    height: 240px;
+    width: 281px;
+    text-align: left;
+  }
+
+  .product-card__header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+  }
+
+  .product-card__buy {
+    width: 100%;
+
+    .price {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: 400;
+      font-size: 36px;
+      margin-bottom: 27px;
+    }
+
+    .product-card__button {
+      width: 100%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    width: 90%;
+  }
+}
+

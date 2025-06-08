@@ -1,0 +1,21 @@
+@use '../../styles/variables' as *;
+
+
+.product-counter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  .count {
+    width: 128px;
+    height: 68px;
+    background: $main-black;
+    color: $font-white;
+    border-radius: $border-radius-size;
+    font-weight: 400;
+    font-size: 36px;
+    text-align: center;
+    box-sizing: border-box;
+  }
+}

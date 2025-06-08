@@ -1,0 +1,47 @@
+@use '../../styles/variables.scss' as *;
+
+.custom-button {
+  background: $main-black;
+  color: $font-white;
+  border: none;
+  border-radius: $border-radius-size;
+  font-size: 36px;
+  padding: 10px 20px;
+  height: 68px;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  outline: none;
+
+  &:hover:not(:disabled) {
+    opacity: 0.8;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #ccc;
+  }
+
+  &.full {
+    width: 100%;
+    max-width: 400px;
+    min-width: 64px;
+  }
+
+  &.auto {
+    width: auto;
+  }
+
+  &.small {
+    width: 68px;
+    height: 68px;
+    font-size: 36px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
