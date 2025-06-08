@@ -1,36 +1,40 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# React Developer (Next.js) — Тестовое задание
 
-## Getting Started
+## Описание проекта
 
-First, run the development server:
+Одностраничное приложение на Next.js, реализующее лендинг с отзывами и каталогом товаров.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Реализовано по пунктам ТЗ
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+| Задача                                                                | Статус    |
+|-----------------------------------------------------------------------|-----------|
+| Верстка по макету Figma                                               |  выполнено |
+| Адаптив под мобильные устройства и планшеты                           |  выполнено |
+| Загрузка отзывов из API (HTML в JSON) + XSS-защита                    |  выполнено |
+| Каталог товаров из API, первая страница SSR + бесконечная подгрузка |  выполнено |
+|“Купить” → переключение на счётчик “+ / –” + ввод количества       |  выполнено |
+|Обновление корзины при изменении количества                        |  выполнено |
+|Сохранение товаров и телефона при перезагрузке                     |  выполнено |
+|Маска и валидация поля телефона                                    |  выполнено |
+|Отправка заказа на сервер + попап об успешном оформлении           |  выполнено |
+|Прелоадеры, обработка ошибок, улучшение читаемости и расширяемости кода |  выполнено |
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+- **Отзывы с XSS-защитой:**  
+  Серверный компонент `ReviewList` загружает HTML-строку из API, очищает её через DOMPurify (`lib/sanitizeHtml.ts`) и рендерит безопасно с `dangerouslySetInnerHTML`.
 
-To learn more about Next.js, take a look at the following resources:
+- **Каталог товаров + бесконечный скролл:**  
+  Клиентский `ProductList` подгружает первую страницу на `useEffect`, а следующие через `IntersectionObserver`, добавляя новые записи в состояние.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Корзина на Zustand + persist:**  
+  Хранилище `useCartStore` сохраняет товары и телефон в `localStorage`, автоматически восстанавливая их после перезагрузки.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Управление количеством товара:**  
+  Компонент `ProductCounter` держит ввод в локальном `useState`, применяет изменения на `onBlur` или кнопками «+ / –», при `0` удаляет товар и возвращает кнопку «Купить».
 
-## Deploy on Vercel
+- **Телефон и заказ:**  
+  Поле с маской `+7 (XXX) XXX-XX-XX`, проверка 11 цифр перед отправкой через `createOrder`, успешный попап и подсветка ошибок.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Адаптив и стили:**  
+  Вёрстка по Figma реализована на SCSS, медиазапросы для 3/2/1 карточки в ряду, шрифты 36/24px, кнопки на всю ширину.
