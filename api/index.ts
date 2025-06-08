@@ -1,6 +1,10 @@
 const API_BASE = 'http://o-complex.com:1337';
 const PAGE_SIZE = 20;
 
+const defaultHeaders = {
+    'Content-Type': 'application/json',
+};
+
 export type ProductType = {
     id: number;
     image_url: string;
@@ -19,14 +23,19 @@ export type GetProductsResponse = {
 };
 
 export const getProducts = async (
-    page: number = 1,
+    page: number = 1
 ): Promise<GetProductsResponse> => {
     const res = await fetch(
         `${API_BASE}/products?page=${page}&page_size=${PAGE_SIZE}`,
+        {
+            headers: defaultHeaders,
+        }
     );
+
     if (!res.ok) {
         throw new Error('Ошибка загрузки товаров');
     }
+
     return res.json();
 };
 
@@ -49,15 +58,12 @@ export type CreateOrderError = {
     error: string;
 };
 
-
 export const createOrder = async (
     payload: CreateOrderPayload
 ): Promise<CreateOrderSuccess | CreateOrderError> => {
     const res = await fetch(`${API_BASE}/order`, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
+        headers: defaultHeaders,
         body: JSON.stringify(payload),
     });
 
@@ -65,9 +71,9 @@ export const createOrder = async (
         const text = await res.text();
         throw new Error(`Order API error (${res.status}): ${text}`);
     }
+
     return res.json();
 };
-
 
 export type ReviewType = {
     id: number;
@@ -76,6 +82,7 @@ export type ReviewType = {
 
 export const getReviews = async (): Promise<ReviewType[]> => {
     const res = await fetch(`${API_BASE}/reviews`, {
+        headers: defaultHeaders,
         cache: 'no-store',
     });
 
